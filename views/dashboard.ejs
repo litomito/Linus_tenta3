@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+<body>
+    <div class="head">
+        <h1>Welcome <%= user.username %> to the Dashboard</h1>
+    </div>
+    <% if (user.role === 'admin') { %>
+        <h2>Admin Dashboard</h2>
+        <div class="btns">
+            <a href="/logout" class="logout-btn">Logout</a>
+            <a href="/create-post" class="create">Create Post</a>
+        </div>
+        <div class="flex">
+            <% for (const post of blogPosts) { %>
+                <a href="/blog/<%= post.id %>" class="title">
+                <div class="cards">
+                    <div class="card-item">
+                        <p><%= post.title %></p>
+                    </div>
+                </div> 
+                </a>
+            <% } %> 
+        </div>
+    <% } else { %>
+        <h2>User Dashboard</h2>
+        <a href="/logout" class="logout-btn">Logout</a>
+        <p>Read blog posts</p>
+        <div class="flex">
+        <% for (const post of blogPosts) { %>
+            <a href="/blog/<%= post.id %>" class="title">
+            <div class="cards">
+                <div class="card-item">
+                    <p><%= post.title %></p>
+                </div>
+            </div> 
+            </a>
+        <% } %>
+        </div> 
+    <% } %>
+</body>
+</html>

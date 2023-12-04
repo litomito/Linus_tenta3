@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <link rel="stylesheet" href="/styles/blog.css">
+</head>
+<body>
+    <div class="blog">
+        <h1><%= blogPost.title %></h1>
+        <p class="des"><%= blogPost.description %></p>
+        <img src="<%= blogPost.image %>" alt="Blog Post Image">
+
+        <% if (blogPost.user) { %>
+            <p class="author">Author: <%= blogPost.user.username %></p>
+        <% } else { %>
+            <p class="author">Author: Unknown</p>
+        <% } %>
+
+        <p class="post-date">Posted on: <%= blogPost.createdAt.toLocaleString() %></p>
+
+        <% if (user && user.role === 'admin') { %>
+            <form action="/delete-post/<%= blogPost.id %>" method="post">
+                <button type="submit">Delete Blog Post</button>
+            </form>
+        <% } else { %>
+        <% } %>
+        
+
+        <a href="/dashboard">Go back to Dashboard</a>
+    </div>
+</body>
+</html>
